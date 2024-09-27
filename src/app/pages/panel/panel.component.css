@@ -1,0 +1,58 @@
+/* panel.component.css */
+
+.container {
+  margin: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #343a40; /* Color del título */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+input {
+  width: 100%; /* Asegura que el input ocupe todo el ancho */
+  padding: 8px; /* Espaciado interno para inputs */
+  border-radius: 4px; /* Bordes redondeados */
+  border: 1px solid #ccc; /* Borde ligero */
+}
+
+button {
+  background-color: #28a745; /* Color verde para el botón */
+  color: white;
+  padding: 10px 15px; /* Aumentar el padding para botones */
+  border: none; /* Sin borde */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+}
+
+button:hover {
+  background-color: #218838; /* Color más oscuro al pasar el ratón */
+}
+
+.table {
+  margin-top: 20px; /* Margen superior para separación */
+  width: 100%; /* Asegura que la tabla ocupe todo el ancho */
+  border-collapse: collapse; /* Colapsa bordes */
+}
+
+.table th, .table td {
+  border: 1px solid #ddd; /* Borde ligero para celdas */
+  padding: 10px; /* Espaciado interno en celdas */
+  text-align: left; /* Alinear texto a la izquierda */
+}
+
+.table th {
+  background-color: #f2f2f2; /* Color de fondo para encabezados */
+}
+
+.text-danger {
+  color: red; /* Color rojo para stock bajo */
+}
