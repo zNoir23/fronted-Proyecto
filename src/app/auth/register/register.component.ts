@@ -14,10 +14,10 @@ export class RegisterComponent  {
   public formSubmitted = false;
 
   public registerForm = this.fb.group({
-    email: ['julian@gmail.com', [Validators.required, Validators.email]],
-    nombre: ['Julian', [Validators.required, Validators.minLength(3)]],
-    password: ['123', [Validators.required]],
-    password2: ['123', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    nombre: ['', [Validators.required, Validators.minLength(3)]],
+    password: ['', [Validators.required]],
+    password2: ['', [Validators.required]],
     terminos: [false ,Validators.required],
 
   }, {
@@ -37,17 +37,18 @@ export class RegisterComponent  {
       return
     }
 
-    // Realizar posteo
-    this.usuarioService.crearUsuario(this.registerForm.value)
-        .subscribe(resp =>{
-          console.log('Usuario creado')
-          console.log(resp)
-        }, (err) => {
-          // Si sicede un error
-          Swal.fire('Error', err.error.msg,'error')
-        })
-
-  }
+   // Realizar el posteo
+   this.usuarioService.crearUsuario(this.registerForm.value)
+   .subscribe(resp => {
+     console.log('Usuario creado');
+     console.log(resp);
+     // Muestra un mensaje de éxito
+     Swal.fire('Éxito', 'Usuario creado con éxito', 'success');
+   }, (err) => {
+     // Manejo del error
+     Swal.fire('Error', err.error.msg, 'error');
+   });
+}
 
   campoNoValido(campo: string): boolean{
     if (this.registerForm.get(campo) !== null && this.registerForm.get(campo)!.invalid && this.formSubmitted) {

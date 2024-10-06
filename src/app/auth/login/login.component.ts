@@ -16,8 +16,8 @@ export class LoginComponent{
   public formSubmitted = false;
 
   public loginForm: FormGroup = this.fb.group({
-    email: ['rodriguez@gmail.com', [Validators.required, Validators.email]],
-    password: ['1234', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
     remember: [false]
   },);
 
@@ -33,7 +33,7 @@ export class LoginComponent{
       console.log(resp)
 
       // Dashboard
-      this.router.navigateByUrl('/')
+      this.router.navigateByUrl('/dashboard')
 
     }, (err) => {
       // Si sucede un error

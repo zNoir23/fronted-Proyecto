@@ -32,4 +32,14 @@ export class UsuarioService {
 
   }
 
+    // Método para verificar si el usuario está autenticado
+    isAuthenticated(): boolean {
+      return !!localStorage.getItem('token'); // Retorna true si el token existe
+    }
+  
+    // Método para cerrar sesión (opcional)
+    logout() {
+      localStorage.removeItem('token');
+    }
+
 }

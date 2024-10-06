@@ -7,15 +7,10 @@ import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms'
 
 
-
-
 // Componentes
 import { PagesComponent } from '../pages/pages.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
-import { PanelComponent } from './panel/panel.component'; // Asegúrate de importar tu componente
 import { HttpClientModule } from '@angular/common/http';
-
-
 
 
 
@@ -25,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     DashboardComponent,
     PagesComponent,
-    PanelComponent,
+
 
 
   ],

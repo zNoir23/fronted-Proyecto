@@ -1,1 +1,88 @@
-<h1>Lista de productos!</h1>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Agregar productos de la canasta familiar</h2>
+
+    <form (ngSubmit)="onSubmit()" class="mb-4">
+        <div class="form-group">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input [(ngModel)]="producto.nombre" name="nombre" required class="form-control" id="nombre">
+        </div>
+        <div class="form-group">
+            <label for="descripcion" class="form-label">Descripción:</label>
+            <input [(ngModel)]="producto.descripcion" name="descripcion" required class="form-control" id="descripcion">
+        </div>
+        <div class="form-group">
+            <label for="categoria" class="form-label">Categoría:</label>
+            <select [(ngModel)]="producto.categoria" name="categoria" required class="form-control" id="categoria">
+                <option value="" disabled selected>Seleccione una categoría</option>
+                <option value="aseo">Aseo</option>
+                <option value="alimento">Alimento</option>
+                <option value="mecatos">Mecatos</option>
+                <option value="bebidas">Bebidas</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="precio" class="form-label">Precio (mayor o igual a 200):</label>
+            <input type="number" [(ngModel)]="producto.precio" name="precio" required min="200" class="form-control" id="precio">
+        </div>
+        <div class="form-group">
+            <label for="stock" class="form-label">Stock:</label>
+            <input type="number" [(ngModel)]="producto.stock" name="stock" required class="form-control" id="stock" min="1" (ngModelChange)="validarStock()">
+            <div *ngIf="producto.stock < 5" class="alert alert-danger mt-2">Stock bajo</div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">{{ editMode ? 'Actualizar' : 'Agregar' }} Producto</button>
+        </div>
+    </form>
+
+    <div *ngIf="mensaje" class="alert alert-success">
+        {{ mensaje }}
+    </div>
+
+    <h3>Filtrar por Categoría</h3>
+    <div class="form-group mb-4">
+        <label for="filter" class="form-label">Selecciona una categoría:</label>
+        <select [(ngModel)]="selectedCategory" (change)="filtrarPorCategoria()" class="form-control" id="filter">
+            <option value="">Todas</option>
+            <option value="aseo">Aseo</option>
+            <option value="alimento">Alimento</option>
+            <option value="mecatos">Mecatos</option>
+            <option value="bebidas">Bebidas</option>
+        </select>
+    </div>
+
+    <h3>Lista de Productos</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of productos">
+                    <td>{{ p.nombre }}</td>
+                    <td>{{ p.descripcion }}</td>
+                    <td>{{ p.categoria }}</td>
+                    <td>{{ p.precio | currency }}</td>
+                    <td>
+                        <span [ngClass]="{'badge bg-danger text-white rounded-pill': p.stock < 5, 'badge bg-success text-white rounded-pill': p.stock >= 5}" 
+                              style="font-size: 1rem; padding: 0.5rem 1rem; border-radius: 15px; color: white;">
+                            {{ p.stock }}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning me-2" (click)="editProducto(p)" aria-label="Editar producto">Editar</button>
+                        <button class="btn btn-danger" (click)="eliminarProducto(p)" aria-label="Eliminar producto">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
